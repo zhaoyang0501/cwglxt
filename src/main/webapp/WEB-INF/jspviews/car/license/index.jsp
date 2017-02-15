@@ -7,8 +7,13 @@
 	  <script src="http://ace.jeka.by/assets/js/bootstrap-datepicker.min.js"></script>
 	  	<link rel="stylesheet" href="http://ace.jeka.by/assets/css/bootstrap-datepicker3.min.css" />
 		<link rel="stylesheet" href="http://ace.jeka.by/assets/css/bootstrap-datetimepicker.min.css" />
-	  
+	   <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+	
 		<title></title>
+     	<style type="text/css">
+		   .error{
+       color: red;
+      }
       </style>
 	</head>
 	<body>
@@ -82,7 +87,7 @@
 				   <div id='_form' style="display: none;">
  						 <div class="row">
                             <div class="col-sm-12 ">
-		                          <form class="form-horizontal" action="" method="get">
+		                          <form id='form_' class="form-horizontal" action="" method="get">
 		                           <input name='id' type="hidden"/>
 		                           	<table class='table table-bordered'>
 		                           		<thead>
@@ -168,9 +173,30 @@
 		</div><!-- /.main-container -->
 		
 			<script>
+			
+
+			   var form_=$("#form_").validate({
+				    rules: {
+				    	name: "required",
+				    	registerDate:"required",
+				    	sn: "required",
+				    	score:{digits:true}
+				    	
+				    },
+				    ignore:"",
+				    messages: {
+				    	name: "姓名码必须填写",
+				    	registerDate: "日期必须填写",
+				    	sn: "驾驶证必须填写",
+				    		score:{digits:"必须是数字"}
+				    }
+				});
+			   
+			   
 	 var table=null;
 	    var tree;
 	    function submit_form(){
+	    	if(!form_.form()) return ;
 	    	$.ajax({
 	    		   type: "POST",
 	    		   url:  $.common.getContextPath() + "/car/license/save",

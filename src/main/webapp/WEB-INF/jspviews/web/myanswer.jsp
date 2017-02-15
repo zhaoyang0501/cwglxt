@@ -35,11 +35,6 @@
 <script src="${pageContext.request.contextPath}/front/js/carousel.js"></script>
 <script src="${pageContext.request.contextPath}/front/js/isotope.js"></script>
 
-<!-- Styles Switcher
-================================================== -->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/front/css/switcher.css">
-<script src="${pageContext.request.contextPath}/front/js/switcher.js"></script>
-
 </head>
 <body>
 

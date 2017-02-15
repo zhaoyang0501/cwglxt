@@ -60,6 +60,7 @@
     <script src="${pageContext.request.contextPath}/js/plugins/dataTables/dataTables.bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/common.js?v=1.0.0"></script>
     <script src="${pageContext.request.contextPath}/js/plugins/toastr/toastr.min.js"></script>
+      <link href="${pageContext.request.contextPath}/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/jquerydatatable.defaults.js?sf=1"></script>
       <decorator:head/>
 	<script>
@@ -103,14 +104,14 @@
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="${pageContext.request.contextPath}/center">
+									<a href="${pageContext.request.contextPath}/sys/user/center">
 										<i class="ace-icon fa fa-cog"></i>
 										个人信息
 									</a>
 								</li>
 
 								<li>
-									<a href="${pageContext.request.contextPath}/user/changepw">
+									<a href="${pageContext.request.contextPath}/sys/user/changepw">
 										<i class="ace-icon fa fa-user"></i>
 										修改密码
 									</a>

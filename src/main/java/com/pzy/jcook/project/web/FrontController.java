@@ -1,6 +1,8 @@
 package com.pzy.jcook.project.web;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -62,8 +64,15 @@ public class FrontController {
 	}
 	
 	@RequestMapping("exam")
-	public String exam(Model model) {
-		model.addAttribute("exams", examService.findAll());
+	public String exam(Model model,HttpServletRequest  req) {
+		User user = (User)req.getSession().getAttribute("webuser");
+		if(user == null){
+			model.addAttribute("tip", "请登录！");
+			return "web/car"; 
+		}
+		List<Exam> exams = examService.findAll();
+		Collections.shuffle(exams);
+		model.addAttribute("exams", exams);
 		return "web/exam";
 	}
 	
@@ -89,6 +98,11 @@ public class FrontController {
 	@RequestMapping("myanswer")
 	public String myanswer(Model model,HttpServletRequest  req) {
 		User user = (User)req.getSession().getAttribute("webuser");
+		if(user == null){
+			model.addAttribute("tip", "请登录！");
+			return "web/car"; 
+		}
+			
 		model.addAttribute("answers", examService.findUserAnswers(user));
 		return "web/myanswer";
 	}

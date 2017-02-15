@@ -8,7 +8,13 @@
 	  	<link rel="stylesheet" href="http://ace.jeka.by/assets/css/bootstrap-datepicker3.min.css" />
 		<link rel="stylesheet" href="http://ace.jeka.by/assets/css/bootstrap-datetimepicker.min.css" />
 	  
+     <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+	
 		<title></title>
+     	<style type="text/css">
+		   .error{
+       color: red;
+      }
       </style>
 	</head>
 	<body>
@@ -82,7 +88,7 @@
 				   <div id='_form' style="display: none;">
  						 <div class="row">
                             <div class="col-sm-12 ">
-		                          <form class="form-horizontal" action="" method="get">
+		                          <form id='form_' class="form-horizontal" action="" method="get">
 		                           <input name='id' type="hidden"/>
 		                           	<table class='table table-bordered'>
 		                           		<thead>
@@ -160,9 +166,30 @@
 		</div><!-- /.main-container -->
 		
 			<script>
-	 var table=null;
+		var table=null;
 	    var tree;
+	    var form_=$("#form_").validate({
+		    rules: {
+		    	carnum: "required",
+		    	cash: {digits:true,required:true},
+		    	score: {digits:true,required:true},
+		    	produceDate: "required",
+		    	addr:"required",
+		    	remark:"required"
+		    },
+		    ignore:"",
+		    messages: {
+		    	carnum: "车牌号码必须填写",
+		    	produceDate: "违法日期必须填写",
+		    	addr:"违法地址必须填写",
+		    	remark:"违法行为必须填写",
+		    	cash:{digits:"必须是数字",required:"扣分必须填写"},
+		    	score: {digits:"必须是数字",required:"扣分必须填写"}
+		    }
+		});
+	    
 	    function submit_form(){
+	    	if(!form_.form()) return ;
 	    	$.ajax({
 	    		   type: "POST",
 	    		   url:  $.common.getContextPath() + "/car/illegal/save",

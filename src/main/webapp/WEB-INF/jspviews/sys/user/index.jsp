@@ -55,8 +55,8 @@
 											<th>性别</th>
 											<th>备用电话</th>
 											<th>电子邮件</th>
-											<th>责任区域</th>
-											<th>微信绑定</th>
+											<th>备注</th>
+											<th>绑定</th>
 											<th>操作</th>
 										</tr>
 		                            </thead>
@@ -115,7 +115,7 @@
 		                           			</tr>
 		                           			
 											<tr>
-												<td>责任范围</td>
+												<td>备注</td>
 		                           				<td> <textarea name='remark' rows="4" cols="" style="width: 80%"></textarea></td>
 		                           			</tr>
 		                           			

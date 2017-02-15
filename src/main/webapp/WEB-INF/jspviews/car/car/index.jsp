@@ -5,7 +5,13 @@
 	<head>
 	  <script src="${pageContext.request.contextPath}/js/plugins/layer/layer.js"></script>
 	 <link href="${pageContext.request.contextPath}/css/plugins/jsTree/style.min.css" rel="stylesheet">
+	  <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+	
 		<title></title>
+		<style type="text/css">
+		   .error{
+       color: red;
+      }
       </style>
 	</head>
 	<body>
@@ -78,7 +84,7 @@
 				   <div id='_form' style="display: none;">
  						 <div class="row">
                             <div class="col-sm-12 ">
-		                          <form class="form-horizontal" action="" method="get">
+		                          <form id='form_' class="form-horizontal" action="" method="get">
 		                           <input name='id' type="hidden"/>
 		                           	<table class='table table-bordered'>
 		                           		<thead>
@@ -142,9 +148,27 @@
 		</div><!-- /.main-container -->
 		
 			<script>
-	 var table=null;
+			
+			   var form_=$("#form_").validate({
+				    rules: {
+				    	name: "required",
+				    	sn: "required",
+				    	color: "required",
+				    	brand:"required"
+				    },
+				    ignore:"",
+				    messages: {
+				    	name: "车牌号码必须填写",
+				    	brand: "品牌必须填写",
+				    	color: "颜色必须填写",
+				    	sn: "发动机号必须填写"
+				    }
+				});
+			   
+	    var table=null;
 	    var tree;
 	    function submit_form(){
+	    	if(!form_.form()) return ;
 	    	$.ajax({
 	    		   type: "POST",
 	    		   url:  $.common.getContextPath() + "/car/car/save",

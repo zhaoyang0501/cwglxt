@@ -100,15 +100,11 @@
         <property name="successUrl" value="/car/car/index"/>
         <property name="filterChainDefinitions">
             <value>
-                /=authc
-                /login=authc
+                 /=authc
+                 /login=authc
                  /index=authc
-                /binduser=anon
-                /oauth2Failure.jsp=anon
-                /workflow/**=authc
-                /upload/**=authc
-                /workitem/**=authc
-                /user/**=authc
+                /car/**=authc
+                /sys/**=authc
                 /logout=logout
             </value>
         </property>

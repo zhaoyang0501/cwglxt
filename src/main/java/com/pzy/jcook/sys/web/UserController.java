@@ -34,6 +34,14 @@ public class UserController extends AbstractBaseCURDController<User,Long>  {
 		model.addAttribute("roles", this.getBaseService().findAllRoles());
 		return this.getBasePath()+"/index";
 	}
+	
+	@RequestMapping("center")
+	public String center(Model model) {
+		model.addAttribute("user", (User)SecurityUtils.getSubject().getSession().getAttribute("currentUser"));
+		return this.getBasePath()+"/center";
+	}
+	
+	
 	@RequestMapping(value = "changepw", method = RequestMethod.GET)
 	public String changepw(Model model) {
 		model.addAttribute("user", (User)SecurityUtils.getSubject().getSession().getAttribute("currentUser"));
